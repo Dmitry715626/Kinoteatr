@@ -1,0 +1,122 @@
+﻿<Application x:Class="Kinoteatr.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Kinoteatr"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="StyleFilmsList" TargetType="{x:Type ListBox}">
+
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="360"/>
+                                <ColumnDefinition Width="550"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal" Height="220" Margin="20,20,20,0" Grid.Column="0">
+                                <Border x:Name="asd" Width="120" Height="200" BorderThickness="2" BorderBrush="Aqua" Grid.Column="0" VerticalAlignment="Center">
+                                    <Image Source="{Binding ElementPhoto}" Stretch="UniformToFill"/>
+                                </Border>
+                                <StackPanel Margin="30,20,0,0">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
+                                        <Border Width="30" Height="20"  BorderThickness="1" BorderBrush="White" CornerRadius="2">
+                                            <TextBlock Text="6+" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                                        </Border>
+                                        <TextBlock Text="Семейный" FontSize="13" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                    <TextBlock Text="{Binding name}" TextWrapping="Wrap" MaxWidth="200" Margin="0,10,0,0" FontSize="18" Foreground="White"/>
+                                    <TextBlock Text="1 ч. 18 мин." FontSize="16" Margin="0,70,0,0" Foreground="White"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Background="Transparent" VerticalAlignment="Center" Margin="100,0,0,0">
+                                <ListBox x:Name="ListSessions" Background="#FF1F44A9"  ItemsSource="{Binding SessionSource}" Style="{DynamicResource StyleForSession}"/>
+                            </StackPanel>
+                            
+                            
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StyleForSession" TargetType="{x:Type ListBox}">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+
+                        <Border Name="Border" BorderThickness="0" CornerRadius="2" Background="#FF1F44A9">
+
+                            <ScrollViewer Margin="0" Focusable="false">
+                                <StackPanel Margin="5"  IsItemsHost="True" Orientation="Horizontal"/>
+                            </ScrollViewer>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Width="80" Height="40" Margin="0,0,20,0" BorderThickness="2" BorderBrush="White" CornerRadius="2" Cursor="Hand" Background="Transparent">
+                                <TextBlock Text="{Binding SessionTime}" Foreground="White" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+
+            
+        </Style>
+        
+    </Application.Resources>
+</Application>
