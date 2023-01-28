@@ -17,7 +17,7 @@ namespace Kinoteatr
             SessionSource.Add(new Sessions() { SessionTime = "11:30" });
             SessionSource.Add(new Sessions() { SessionTime = "14:25" });
             SessionSource.Add(new Sessions() { SessionTime = "18:00" });
-            SessionSource.Add(new Sessions() { SessionTime = "21:45" });
+            SessionSource.Add(new Sessions() { SessionTime = "21:45123123" });
             name = "Классное название фильма";
         }
     }
