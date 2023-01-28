@@ -108,7 +108,7 @@
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
                             <Border Width="80" Height="40" Margin="0,0,20,0" BorderThickness="2" BorderBrush="White" CornerRadius="2" Cursor="Hand" Background="Transparent">
-                                <TextBlock Text="{Binding SessionTime}" Foreground="White" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button x:Name="SessionBtn" Content="{Binding SessionTime}" Foreground="White" Background="Transparent" Click="SessionBtn_Click"/>
                             </Border>
                         </Grid>
                     </DataTemplate>
