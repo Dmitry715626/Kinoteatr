@@ -24,16 +24,8 @@ namespace Kinoteatr
         {
             InitializeComponent();
 
-            List<Films> films = new List<Films>();
-            films.Add(new Films());
-            films.Add(new Films());
-            films.Add(new Films());
-            films.Add(new Films());
-            films.Add(new Films());
-
-
-            ListFilms.ItemsSource = films;
-            
+            Films.GetDataBase();
+            ListFilms.ItemsSource = Films.GetPremieresList();
         }
     }
 }

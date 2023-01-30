@@ -21,7 +21,7 @@
                     </Style>
                 </Setter.Value>
             </Setter>
-            
+
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
@@ -31,28 +31,30 @@
                                 <ColumnDefinition Width="550"/>
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Orientation="Horizontal" Height="220" Margin="20,20,20,0" Grid.Column="0">
-                                <Border x:Name="asd" Width="120" Height="200" BorderThickness="2" BorderBrush="Aqua" Grid.Column="0" VerticalAlignment="Center">
-                                    <Image Source="{Binding ElementPhoto}" Stretch="UniformToFill"/>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="220" Margin="20,0,0,0" Grid.Column="0">
+                                <Border x:Name="asd" Width="130" Height="200" BorderThickness="2" BorderBrush="#FF5646A8" Grid.Column="0" VerticalAlignment="Center">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="5" Direction="315" Opacity="100" Color="#FF5646A8" RenderingBias="Performance" ShadowDepth="5"/>
+                                    </Border.Effect>
+                                    <Image Source="{Binding Photo}" Stretch="Fill"/>
                                 </Border>
                                 <StackPanel Margin="30,20,0,0">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
                                         <Border Width="30" Height="20"  BorderThickness="1" BorderBrush="White" CornerRadius="2">
-                                            <TextBlock Text="6+" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                                            <TextBlock Text="{Binding AgeRate}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
                                         </Border>
-                                        <TextBlock Text="Семейный" FontSize="13" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Genre}" FontStyle="Oblique" FontSize="13" Margin="5,0,0,0" VerticalAlignment="Center"/>
                                     </StackPanel>
 
-                                    <TextBlock Text="{Binding name}" TextWrapping="Wrap" MaxWidth="200" Margin="0,10,0,0" FontSize="18" Foreground="White"/>
-                                    <TextBlock Text="1 ч. 18 мин." FontSize="16" Margin="0,70,0,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="Wrap" MaxWidth="180" Margin="0,10,0,0" FontSize="18" Foreground="White"/>
+                                    <TextBlock Text="{Binding Duration}" FontSize="16" Margin="0,70,0,0" Foreground="White"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Background="Transparent" VerticalAlignment="Center" Margin="100,0,0,0">
                                 <ListBox x:Name="ListSessions" Background="#FF1F44A9"  ItemsSource="{Binding SessionSource}" Style="{DynamicResource StyleForSession}"/>
                             </StackPanel>
-                            
-                            
+                            <Border Grid.ColumnSpan="2" CornerRadius="5" BorderBrush="Gray"  BorderThickness="1" Width="850" Height="2" Margin="10,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                         </Grid>
                     </DataTemplate>
                 </Setter.Value>
@@ -61,6 +63,8 @@
 
         <Style x:Key="StyleForSession" TargetType="{x:Type ListBox}">
 
+            <Setter Property="FontFamily" Value="Comic Sans MC"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListBox">
@@ -75,8 +79,8 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
-            
+
+
             <Setter Property="ItemContainerStyle">
                 <Setter.Value>
                     <Style TargetType="{x:Type ListBoxItem}">
@@ -90,7 +94,7 @@
                     </Style>
                 </Setter.Value>
             </Setter>
-            
+
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
@@ -98,8 +102,8 @@
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
-            
-            
+
+
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
@@ -107,16 +111,19 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <Border Width="80" Height="40" Margin="0,0,20,0" BorderThickness="2" BorderBrush="White" CornerRadius="2" Cursor="Hand" Background="Transparent">
-                                <Button x:Name="SessionBtn" Content="{Binding SessionTime}" Foreground="White" Background="Transparent" Click="SessionBtn_Click"/>
-                            </Border>
+                            <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center">
+                                <Border Width="80" Height="40" Margin="0,0,20,0" BorderThickness="2" HorizontalAlignment="Center" BorderBrush="White" CornerRadius="2" Cursor="Hand" Background="Transparent">
+                                    <Button x:Name="SessionBtn" Content="{Binding SessionTime}" Foreground="White" Background="Transparent" Click="SessionBtn_Click"/>
+                                </Border>
+                                <TextBlock Text="{Binding SessionCost}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0" />
+                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
 
-            
+
         </Style>
-        
+
     </Application.Resources>
 </Application>
