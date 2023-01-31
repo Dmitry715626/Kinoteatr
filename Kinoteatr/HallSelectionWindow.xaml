@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kinoteatr"
         mc:Ignorable="d"
-        Title="HallSelectionWindow" Height="450" Width="800">
+        Title="HallSelectionWindow" Height="270" Width="488" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <ListBox x:Name="lstbt" Style="{DynamicResource ListPoint}" Margin="74,37,88,33"/>
+
     </Grid>
 </Window>

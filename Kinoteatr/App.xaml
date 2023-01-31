@@ -28,18 +28,18 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="360"/>
-                                <ColumnDefinition Width="550"/>
+                                <ColumnDefinition Width="540"/>
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="220" Margin="20,0,0,0" Grid.Column="0">
                                 <Border x:Name="asd" Width="130" Height="200" BorderThickness="2" BorderBrush="#FF5646A8" Grid.Column="0" VerticalAlignment="Center">
                                     <Border.Effect>
-                                        <DropShadowEffect BlurRadius="5" Direction="315" Opacity="100" Color="#FF5646A8" RenderingBias="Performance" ShadowDepth="5"/>
+                                        <DropShadowEffect BlurRadius="15" Direction="315" Opacity="100" Color="#FF5646A8" RenderingBias="Quality" ShadowDepth="15"/>
                                     </Border.Effect>
                                     <Image Source="{Binding Photo}" Stretch="Fill"/>
                                 </Border>
                                 <StackPanel Margin="30,20,0,0">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                                         <Border Width="30" Height="20"  BorderThickness="1" BorderBrush="White" CornerRadius="2">
                                             <TextBlock Text="{Binding AgeRate}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
                                         </Border>
@@ -107,15 +107,16 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid>
+                        <Grid x:Name="Test">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center">
-                                <Border Width="80" Height="40" Margin="0,0,20,0" BorderThickness="2" HorizontalAlignment="Center" BorderBrush="White" CornerRadius="2" Cursor="Hand" Background="Transparent">
+                                <Border x:Name="qwe" Width="80" Height="40" Margin="0,0,20,0" BorderThickness="2" HorizontalAlignment="Center" BorderBrush="White" CornerRadius="2" Cursor="Hand" Background="Transparent">
                                     <Button x:Name="SessionBtn" Content="{Binding SessionTime}" Foreground="White" Background="Transparent" Click="SessionBtn_Click"/>
                                 </Border>
-                                <TextBlock Text="{Binding SessionCost}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0" />
+                                <TextBlock Text="{Binding SessionCost}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0" />
+                                <TextBlock x:Name="PremierId" Text="{Binding PremiereId}" Visibility="Hidden"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -125,5 +126,86 @@
 
         </Style>
 
+
+        <Style x:Key="ListPoint" TargetType="{x:Type ListBox}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Button x:Name="PointBtn" Width="50" Height="50" Content="{Binding PointNumber}" Style="{DynamicResource BtnPoint}" Click="PointBtn_Click" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BtnPoint" TargetType="{x:Type Button}">
+            
+            <Setter Property="Width" Value="10"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border x:Name="border" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="1" 
+                                Background="Green"
+                                SnapsToDevicePixels="True">
+
+                            <ContentPresenter>
+                                <ContentPresenter.Content>
+                                    <TextBlock x:Name="ButtonText"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center" 
+                                                   TextAlignment="Center"
+                                                   Text="{Binding ContentText}" />
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+
+                        
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="BtnPoint2" TargetType="{x:Type Button}">
+
+            <Setter Property="Width" Value="10"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border x:Name="border" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="1" 
+                                Background="Black"
+                                SnapsToDevicePixels="True">
+
+                            <ContentPresenter>
+                                <ContentPresenter.Content>
+                                    <TextBlock x:Name="ButtonText"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center" 
+                                                   TextAlignment="Center"
+                                                   Text="{Binding ContentText}" />
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Border>
+
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

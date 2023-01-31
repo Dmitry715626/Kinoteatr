@@ -7,6 +7,7 @@ using System.Reflection.Emit;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Kinoteatr
 {
@@ -17,10 +18,43 @@ namespace Kinoteatr
     {
         private void SessionBtn_Click(object sender, RoutedEventArgs e)
         {
-            new HallSelectionWindow().ShowDialog();
+            Border brd = (Border)((Button)sender).Parent;
+            StackPanel stack = (StackPanel)((Border)brd).Parent;
+            int PremiereId = 0;
 
-            
-            MessageBox.Show(((Button)sender).Content.ToString());
+            foreach(TextBlock textBlock in ((StackPanel)stack).Children.OfType<TextBlock>())
+            {
+                if (textBlock.Name == "PremierId")
+                    PremiereId = int.Parse(textBlock.Text);
+            }
+
+            foreach(Films films in Films.GetPremieresList())
+            {
+                if(films.PremiereId == PremiereId.ToString())
+                {
+                    for(int i = 0; i < films.SessionSource.Count; i++)
+                    {
+                        if (films.SessionSource[i].SessionTime == ((Button)sender).Content.ToString())
+                        {
+                            new HallSelectionWindow(PremiereId, i).ShowDialog();
+                        }
+                    }
+                }
+            }
+
+        }
+
+        private void PointBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (((Button)sender).Style == this.Resources["BtnPoint"] as Style)
+            {
+                ((Button)sender).Style = this.Resources["BtnPoint2"] as Style;
+            }
+            else
+            {
+                ((Button)sender).Style = this.Resources["BtnPoint"] as Style;
+            }
+
         }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="HallSelectionWindow.xaml.cs">
       <DependentUpon>HallSelectionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Points.cs" />
     <Compile Include="Sessions.cs" />
     <Compile Include="SqlCon.cs" />
     <Page Include="HallSelectionWindow.xaml">

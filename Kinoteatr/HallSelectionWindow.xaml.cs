@@ -19,9 +19,11 @@ namespace Kinoteatr
     /// </summary>
     public partial class HallSelectionWindow : Window
     {
-        public HallSelectionWindow()
+        public HallSelectionWindow(int PremId, int SessId)
         {
             InitializeComponent();
+            
         }
+
     }
 }

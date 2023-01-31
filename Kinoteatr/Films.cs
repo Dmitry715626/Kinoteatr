@@ -65,7 +65,7 @@ namespace Kinoteatr
                 films.PremiereId = read.GetValue(0).ToString();
                 films.FilmId = read.GetValue(1).ToString();
                 films.Name = read.GetValue(2).ToString();
-                films.Duration = read.GetValue(3).ToString() + " мин.";
+                films.Duration = "Длительность: " + read.GetValue(3).ToString() + " мин.";
                 films.Price = read.GetValue(4).ToString();
                 films.AgeRate = read.GetValue(5).ToString() + "+";
                 films.Photo = System.IO.Directory.GetCurrentDirectory() + @"\Images\" + read.GetValue(6).ToString();
@@ -73,20 +73,20 @@ namespace Kinoteatr
 
                 sessions.SessionTime = read.GetValue(12).ToString();
                 sessions.SessionPrice = read.GetValue(13).ToString();
-                sessions.SessionCost = "325 рублей";
+                sessions.SessionCost = (double.Parse(sessions.SessionPrice) * double.Parse(films.Price)).ToString() + " рублей";
+                sessions.PremiereId = films.PremiereId;
 
                 hall.idHall = read.GetValue(8).ToString();
                 hall.NumberHall = read.GetValue(9).ToString();
                 hall.CountRows = read.GetValue(10).ToString();
                 hall.CountColumns = read.GetValue(11).ToString();
+                hall.FillPoints();
 
-                MessageBox.Show(films.Name);
-                if (AddSessions(films, sessions))
+                
+                if (AddSessions(films, sessions, hall))
                 {
                     films.SessionSource.Add(sessions);
                     films.Halls.Add(hall);
-
-
                     PremiereList.Add(films);
                 }
 
@@ -95,12 +95,14 @@ namespace Kinoteatr
             con.Close();
         }
 
-        private static bool AddSessions(Films newFilm, Sessions sessions)
+        private static bool AddSessions(Films newFilm, Sessions sessions, Hall hall)
         {
             foreach (Films films in PremiereList)
             {
                 if (films.FilmId == newFilm.FilmId)
                 {
+                    sessions.PremiereId = films.PremiereId;
+                    films.Halls.Add(hall);
                     films.SessionSource.Add(sessions);
                     return false;
                 }
