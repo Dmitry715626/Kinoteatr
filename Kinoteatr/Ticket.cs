@@ -13,8 +13,12 @@ namespace Kinoteatr
         public string FilmSessionTime { get; set; }
         public string TicketPrice { get; set; }
         public string HallNumber { get; set; }
-        public string Points { get; set; }
-        public static List<Ticket> tickets { get; set; }
+        public string HallPoints { get; set; }
+        public static List<Ticket> tickets = new List<Ticket>();
 
+        public static void AddTicket(Ticket ticket)
+        {
+            tickets.Add(ticket);
+        }
     }
 }

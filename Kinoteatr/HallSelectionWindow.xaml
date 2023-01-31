@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kinoteatr"
         mc:Ignorable="d"
-        Title="HallSelectionWindow" Height="745" Width="705" WindowStartupLocation="CenterScreen" Background="#FF211E67" Foreground="White" FontFamily="Comic Sans MS">
+        Title="HallSelectionWindow" Height="745" Width="705" WindowStartupLocation="CenterScreen" Background="#FF211E67" Foreground="White" FontFamily="Comic Sans MS" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
@@ -14,14 +14,31 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="101*"/>
-            <RowDefinition Height="502*"/>
+            <RowDefinition Height="81*"/>
+            <RowDefinition Height="522*"/>
             <RowDefinition Height="103*"/>
             <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
         <ListBox x:Name="ListPoints" Grid.Row="2" Grid.Column="1" Style="{DynamicResource ListRowPoint}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="30,0,0,0" TextWrapping="Wrap" Text="Выберите места: " VerticalAlignment="Center" Height="33" Width="194" Grid.Row="1"/>
-        <Button Grid.Column="1" FontSize="20" Content="Купить" HorizontalAlignment="Right" Margin="0,0,30,0" Grid.Row="3" VerticalAlignment="Center" Height="36" Width="144" Cursor="Hand" Click="Button_Click" />
-        <TextBlock Grid.Column="1" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Итог: " Height="36" Width="77"/>
+        <TextBlock Grid.Column="1" FontSize="36" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Выберите места: " VerticalAlignment="Center" Height="61" Width="300" Grid.Row="1"/>
+        <Button Grid.Column="1" FontSize="26" Content="Купить" HorizontalAlignment="Left" Margin="516,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="50" Width="154" Cursor="Hand" Click="Button_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border BorderBrush="White" CornerRadius="3" BorderThickness="1" Background="Transparent" Cursor="Hand" TextBlock.Foreground="white"
+                        TextBlock.FontSize="26"
+                        TextBlock.FontWeight="Medium">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" Margin="0,0,0,0">
+                            <ContentPresenter.Content>
+                                <TextBlock Text="Купить"/>
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0" Orientation="Horizontal" Height="36" Width="297">
+            <TextBlock x:Name="LastCost"  FontSize="26"  Text="Итог: 0" Height="36" />
+            <TextBlock Text=" руб." FontSize="26" Height="36" Width="185"/>
+        </StackPanel>
     </Grid>
 </Window>

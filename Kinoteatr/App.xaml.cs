@@ -16,6 +16,7 @@ namespace Kinoteatr
     /// </summary>
     public partial class App : Application
     {
+        public static int TicketSelect = 0;
         private void SessionBtn_Click(object sender, RoutedEventArgs e)
         {
             Border brd = (Border)((Button)sender).Parent;
@@ -37,7 +38,7 @@ namespace Kinoteatr
                         if (films.SessionSource[i].SessionTime == ((Button)sender).Content.ToString())
                         {
                             Films.SelectedHall = films.Halls[i];
-                            new HallSelectionWindow(films.Halls[i]).ShowDialog();
+                            new HallSelectionWindow(films.Halls[i], films.SessionSource[i], films).ShowDialog();
                         }
                     }
                 }
@@ -46,6 +47,37 @@ namespace Kinoteatr
 
         private void PointBtn_Click(object sender, RoutedEventArgs e)
         {
+            foreach (RowsPoint rows in Films.SelectedHall.PointsArray)
+            {
+                foreach (Points point in rows.Columns)
+                {
+                    if (point.Index == GetIndexPoint(sender))
+                    {
+                        if (point.StyleStatus == false)
+                        {
+                            point.StyleStatus = true;
+                            HallSelectionWindow.Cost.Text = "Итог: " + (double.Parse(HallSelectionWindow.Cost.Text.Replace("Итог: ", "")) - HallSelectionWindow.Price);
+                            TicketSelect--;
+                        }
+                        else
+                        {
+                            if (TicketSelect >= 5)
+                            {
+                                MessageBox.Show("На один билет можно приобрести не более 5 мест!", "Info");
+                                return;
+                            }
+                            else
+                            {
+                                point.StyleStatus = false;
+                                HallSelectionWindow.Cost.Text = "Итог: " + (double.Parse(HallSelectionWindow.Cost.Text.Replace("Итог: ", "")) + HallSelectionWindow.Price);
+                                TicketSelect++;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+
             if (((Button)sender).Style == this.Resources["BtnPoint"] as Style)
             {
                 ((Button)sender).Style = this.Resources["BtnPoint2"] as Style;
@@ -54,7 +86,6 @@ namespace Kinoteatr
             {
                 ((Button)sender).Style = this.Resources["BtnPoint"] as Style;
             }
-
         }
 
         private void PointBtn_Loaded(object sender, RoutedEventArgs e)
@@ -64,8 +95,13 @@ namespace Kinoteatr
                 foreach(Points point in rows.Columns)
                 {
                     if(point.Index == GetIndexPoint(sender))
-                        if(point.StyleStatus == false)
+                    {
+                        if (point.StyleStatus == false)
+                        {
                             ((Button)sender).Style = this.Resources["BtnPoint2"] as Style;
+                            ((Button)sender).IsEnabled = false;
+                        }
+                    }
                 }
             }
         }

@@ -228,17 +228,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-
-
         </Style>
-
-
-
-
-
-
-
-
 
 
 
@@ -249,7 +239,7 @@
 
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate>
+                    <ControlTemplate TargetType="Button">
                         <Border x:Name="border" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="0"
@@ -257,12 +247,30 @@
                                 Background="#FF4E85EB"
                                 SnapsToDevicePixels="True">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="10" Direction="315" Opacity="300" RenderingBias="Quality" ShadowDepth="3"/>
+                                <DropShadowEffect x:Name="Qwe" BlurRadius="10" Direction="315" Opacity="300" RenderingBias="Quality" ShadowDepth="3"/>
                             </Border.Effect>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#FF7C42FF" ShadowDepth="0" BlurRadius="50"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Aqua" ShadowDepth="0" BlurRadius="40"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
+            
         </Style>
 
 
