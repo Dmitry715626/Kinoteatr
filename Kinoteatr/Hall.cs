@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Kinoteatr
 {
@@ -12,16 +13,22 @@ namespace Kinoteatr
         public string NumberHall { get; set; }
         public string CountRows { get; set; }
         public string CountColumns { get; set; }
-        public List<Points> Points { get; set; }
+        public List<RowsPoint> PointsArray { get; set; }
 
         public void FillPoints()
         {
-            int PointCount = int.Parse(CountColumns) * int.Parse(CountRows);
-            Points = new List<Points>();
-
-            for (int i = 0; i < PointCount; i++)
+            PointsArray = new List<RowsPoint>();
+            int PointCount = 1;
+            for (int i = 1; i <= int.Parse(CountRows); i++)
             {
-                Points.Add(new Points() { Index = i, StyleStatus = true});;
+                List<Points> points = new List<Points>();
+                for (int j = 1; j <= int.Parse(CountColumns); j++)
+                {
+                    points.Add(new Points() { StyleStatus = true, Index = PointCount });
+                    PointCount++;
+                }
+               
+                PointsArray.Add(new RowsPoint() { Columns = points});
             }
         }
     }

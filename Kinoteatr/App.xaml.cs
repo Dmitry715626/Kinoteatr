@@ -21,7 +21,7 @@ namespace Kinoteatr
             Border brd = (Border)((Button)sender).Parent;
             StackPanel stack = (StackPanel)((Border)brd).Parent;
             int PremiereId = 0;
-
+               
             foreach(TextBlock textBlock in ((StackPanel)stack).Children.OfType<TextBlock>())
             {
                 if (textBlock.Name == "PremierId")
@@ -36,12 +36,12 @@ namespace Kinoteatr
                     {
                         if (films.SessionSource[i].SessionTime == ((Button)sender).Content.ToString())
                         {
-                            new HallSelectionWindow(PremiereId, i).ShowDialog();
+                            Films.SelectedHall = films.Halls[i];
+                            new HallSelectionWindow(films.Halls[i]).ShowDialog();
                         }
                     }
                 }
             }
-
         }
 
         private void PointBtn_Click(object sender, RoutedEventArgs e)
@@ -55,6 +55,24 @@ namespace Kinoteatr
                 ((Button)sender).Style = this.Resources["BtnPoint"] as Style;
             }
 
+        }
+
+        private void PointBtn_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach(RowsPoint rows in Films.SelectedHall.PointsArray)
+            {
+                foreach(Points point in rows.Columns)
+                {
+                    if(point.Index == GetIndexPoint(sender))
+                        if(point.StyleStatus == false)
+                            ((Button)sender).Style = this.Resources["BtnPoint2"] as Style;
+                }
+            }
+        }
+
+        private int GetIndexPoint(object sender)
+        {
+            return int.Parse(((Button)sender).Content.ToString());
         }
     }
 }

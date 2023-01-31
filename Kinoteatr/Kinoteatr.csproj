@@ -60,8 +60,10 @@
       <DependentUpon>HallSelectionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Points.cs" />
+    <Compile Include="RowsPoint.cs" />
     <Compile Include="Sessions.cs" />
     <Compile Include="SqlCon.cs" />
+    <Compile Include="Ticket.cs" />
     <Page Include="HallSelectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

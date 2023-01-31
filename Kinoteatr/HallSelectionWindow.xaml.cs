@@ -19,11 +19,16 @@ namespace Kinoteatr
     /// </summary>
     public partial class HallSelectionWindow : Window
     {
-        public HallSelectionWindow(int PremId, int SessId)
+        public HallSelectionWindow(Hall hall)
         {
             InitializeComponent();
-            
+            ListPoints.ItemsSource = hall.PointsArray;
+
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

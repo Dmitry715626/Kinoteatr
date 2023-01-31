@@ -18,6 +18,7 @@ namespace Kinoteatr
         private static List<Films> PremiereList = new List<Films>();
         public List<Hall> Halls { get; set; }
         public List<Sessions> SessionSource { get; set; }
+        public static Hall SelectedHall { get; set; }
         public Films()
         {
             Halls = new List<Hall>();

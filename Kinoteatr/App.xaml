@@ -127,46 +127,139 @@
         </Style>
 
 
-        <Style x:Key="ListPoint" TargetType="{x:Type ListBox}">
+        <Style x:Key="ListRowPoint" TargetType="{x:Type ListBox}">
+
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+
+                        <Border Name="Border" BorderThickness="0" CornerRadius="2" Background="#FF1F44A9">
+
+                            <ScrollViewer Margin="0" Focusable="false">
+                                <StackPanel Margin="5"  IsItemsHost="True" Orientation="Vertical"/>
+                            </ScrollViewer>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Button x:Name="PointBtn" Width="50" Height="50" Content="{Binding PointNumber}" Style="{DynamicResource BtnPoint}" Click="PointBtn_Click" />
+                        <ListBox x:Name="ListColumnPoint" Background="#FF211E67"  ItemsSource="{Binding Columns}" Style="{DynamicResource StyleColumnPoints}"/>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
+
+
+
+        <Style x:Key="StyleColumnPoints" TargetType="{x:Type ListBox}">
+
+            <Setter Property="FontFamily" Value="Comic Sans MC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+
+                        <Border Name="Border" BorderThickness="0" CornerRadius="2" Background="#FF1F44A9">
+
+                            <ScrollViewer Margin="0" Focusable="false">
+                                <StackPanel Margin="5"  IsItemsHost="True" Orientation="Horizontal"/>
+                            </ScrollViewer>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid x:Name="Test">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="PointBtn" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30" Content="{Binding Index}" Style="{DynamicResource BtnPoint}" Cursor="Hand" Click="PointBtn_Click" Loaded="PointBtn_Loaded" />
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+
+
+
+
+
+
+
+
+
+
+
+
         <Style x:Key="BtnPoint" TargetType="{x:Type Button}">
             
-            <Setter Property="Width" Value="10"/>
+            <Setter Property="Width" Value="30"/>
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
                         <Border x:Name="border" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="1" 
-                                Background="Green"
+                                BorderThickness="0"
+                                CornerRadius="2"
+                                Background="#FF4E85EB"
                                 SnapsToDevicePixels="True">
-
-                            <ContentPresenter>
-                                <ContentPresenter.Content>
-                                    <TextBlock x:Name="ButtonText"
-                                                   TextWrapping="Wrap"
-                                                   VerticalAlignment="Center" 
-                                                   TextAlignment="Center"
-                                                   Text="{Binding ContentText}" />
-                                </ContentPresenter.Content>
-                            </ContentPresenter>
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" Direction="315" Opacity="300" RenderingBias="Quality" ShadowDepth="3"/>
+                            </Border.Effect>
                         </Border>
-
-                        
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Black"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -175,34 +268,32 @@
 
         <Style x:Key="BtnPoint2" TargetType="{x:Type Button}">
 
-            <Setter Property="Width" Value="10"/>
+            <Setter Property="Width" Value="30"/>
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
                         <Border x:Name="border" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="1" 
-                                Background="Black"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="2"
+                                Background="#FF5646A8"
                                 SnapsToDevicePixels="True">
-
+                            
+                            <Border.Effect>
+                                <DropShadowEffect Color="#FF7C42FF" ShadowDepth="8" Direction="270" BlurRadius="15"/>
+                            </Border.Effect>
                             <ContentPresenter>
                                 <ContentPresenter.Content>
                                     <TextBlock x:Name="ButtonText"
                                                    TextWrapping="Wrap"
                                                    VerticalAlignment="Center" 
                                                    TextAlignment="Center"
-                                                   Text="{Binding ContentText}" />
+                                                   Foreground="White"
+                                                   Text="{Binding Index}" />
                                 </ContentPresenter.Content>
                             </ContentPresenter>
                         </Border>
-
-
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Black"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
