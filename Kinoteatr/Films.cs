@@ -15,7 +15,7 @@ namespace Kinoteatr
         public string PremiereId { get; set; }
         public string Photo { get; set; }
 
-        private static List<Films> PremiereList = new List<Films>();
+        private static List<Films> PremiereList = new List<Films>();  
         public List<Hall> Halls { get; set; }
         public List<Sessions> SessionSource { get; set; }
         public static Hall SelectedHall { get; set; }

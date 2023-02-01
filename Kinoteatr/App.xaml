@@ -269,10 +269,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
-            
         </Style>
-
 
         <Style x:Key="BtnPoint2" TargetType="{x:Type Button}">
 
@@ -302,6 +299,113 @@
                                 </ContentPresenter.Content>
                             </ContentPresenter>
                         </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="ListTicket" TargetType="{x:Type ListBox}">
+            <Setter Property="FontFamily" Value="Comic Sans MC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+
+                        <Border Name="Border" BorderThickness="0" CornerRadius="2" Background="#FF211E67">
+
+                            <ScrollViewer Margin="0" Focusable="false">
+                                <StackPanel Margin="5"  IsItemsHost="True" Orientation="Vertical"/>
+                            </ScrollViewer>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid x:Name="Test">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="600"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="170"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Border CornerRadius="5" BorderThickness="2.5" BorderBrush="Gray" VerticalAlignment="Center" Width="600" Height="150">
+                                <Image Width="600" Height="150" Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Source="/Фон.jpg" Stretch="Fill"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,5,0,0" Height="100" Width="300" Orientation="Horizontal">
+                                <Image Source="/Проектор.png" Width="80" Height="80" HorizontalAlignment="Center" Margin="0,0,0,0" Stretch="UniformToFill" VerticalAlignment="Center"/>
+                                <TextBlock Text="CINEMA MOVIE" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="26" Foreground="#FF211E67" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="150"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Vertical" Margin="200,40,0,0">
+                                <TextBlock Text="{Binding FilmName}" HorizontalAlignment="Center" Foreground="Blue" FontSize="16" FontWeight="Bold" />
+                                <TextBlock Text="{Binding FilmSessionTime}" HorizontalAlignment="Center" Foreground="Blue" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding HallNumber}" HorizontalAlignment="Center" FontSize="16" Foreground="Blue" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding HallPoints}" HorizontalAlignment="Center" Foreground="Blue" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding TicketPrice}" HorizontalAlignment="Center" Foreground="Blue" FontSize="16" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="BtnMyTickets" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border x:Name="KingBorder" Background="Transparent">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Border BorderBrush="White" BorderThickness="1" Margin="0,0,20,0" Width="1.5" Height="{Binding ElementName=KingBorder, Path=ActualHeight}"/>
+                                <ContentPresenter>
+                                    <ContentPresenter.Content>
+                                        <TextBlock x:Name="ButtonText"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="26"
+                                                   TextAlignment="Center"
+                                                   Foreground="White"
+                                                   Text="Мои билеты" />
+                                    </ContentPresenter.Content>
+                                </ContentPresenter>
+                                <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Right" Margin="20,0,0,0" Width="1.5" Height="{Binding ElementName=KingBorder, Path=ActualHeight}"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="KingBorder" Value="#FF4074D4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

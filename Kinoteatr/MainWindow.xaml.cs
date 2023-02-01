@@ -27,5 +27,14 @@ namespace Kinoteatr
             Films.GetDataBase();
             ListFilms.ItemsSource = Films.GetPremieresList();
         }
+        private void BtnTicket_Click(object sender, RoutedEventArgs e)
+        {
+            new MyTicketsWindow().ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("В разработке!");
+        }
     }
 }

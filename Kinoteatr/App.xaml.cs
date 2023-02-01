@@ -98,6 +98,7 @@ namespace Kinoteatr
                     {
                         if (point.StyleStatus == false)
                         {
+                            HallSelectionWindow.oldPoints.Add(point);
                             ((Button)sender).Style = this.Resources["BtnPoint2"] as Style;
                             ((Button)sender).IsEnabled = false;
                         }

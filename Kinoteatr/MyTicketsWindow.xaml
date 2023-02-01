@@ -1,0 +1,28 @@
+﻿<Window x:Class="Kinoteatr.MyTicketsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kinoteatr"
+        mc:Ignorable="d"
+        Title="Билеты" Height="745" Width="705" WindowStartupLocation="CenterScreen" Background="#FF211E67" Foreground="White" FontFamily="Comic Sans MS">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="81*"/>
+            <RowDefinition Height="609*"/>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="1" Grid.Row="1" Background="#FF4E85EB">
+            <TextBlock Text="Ваши билеты" FontSize="36" Margin="10,0,0,0" VerticalAlignment="Center"/>
+        </Border>
+
+        <ListBox x:Name="ListTicket" Grid.Row="2" Grid.Column="1" Style="{DynamicResource ListTicket}" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalAlignment="Center"/>
+    </Grid>
+</Window>

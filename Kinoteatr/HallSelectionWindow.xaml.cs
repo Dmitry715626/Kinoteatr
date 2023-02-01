@@ -20,10 +20,11 @@ namespace Kinoteatr
     public partial class HallSelectionWindow : Window
     {
         public static TextBlock Cost = new TextBlock();
+        public static List<Points> oldPoints = new List<Points>();
         public static double Price;
         Sessions session = new Sessions();
         Hall hall;
-        List<Points> points = new List<Points>();
+        static List<Points> points = new List<Points>();
         Ticket ticket = new Ticket();
         public HallSelectionWindow(Hall hall, Sessions sessions, Films film)
         {
@@ -37,6 +38,7 @@ namespace Kinoteatr
             ticket.FilmSessionTime = sessions.SessionTime;
             Cost = LastCost;
             Price = double.Parse(session.SessionCost.Replace(" рублей", ""));
+            this.Title += " " + hall.NumberHall;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -52,6 +54,16 @@ namespace Kinoteatr
                 }
             }
 
+            for(int i = 0; i < points.Count; i++)
+            {
+                foreach (Points oldPoint in oldPoints)
+                {
+                    if (points[i] == oldPoint)
+                        points.Remove(points[i]);
+                }
+            }
+
+            oldPoints.Clear();
             for (int i = 0; i < points.Count; i++)
             {
                 ticket.HallPoints += points[i].Index;
@@ -59,10 +71,15 @@ namespace Kinoteatr
                     ticket.HallPoints += ", ";
             }
 
-            ticket.TicketPrice = (int.Parse(session.SessionCost.Replace(" рублей", "")) * points.Count).ToString();
+            ticket.FilmSessionTime = "Время: " + ticket.FilmSessionTime;
+            ticket.FilmName = "Фильм: " + ticket.FilmName;
+            ticket.HallNumber = "Номер зала: " + ticket.HallNumber;
+            ticket.HallPoints = "Выбранные места: " + ticket.HallPoints;
+            ticket.TicketPrice = "Сумма: " + (double.Parse(session.SessionCost.Replace(" рублей", "")) * points.Count).ToString();
             Ticket.AddTicket(ticket);
             MessageBox.Show("Билет на " + points.Count + " мест(а) успешно приобретен!", "Info");
             App.TicketSelect = 0;
+            points.Clear();
             this.Hide();
         }
 
@@ -79,9 +96,6 @@ namespace Kinoteatr
             }
         }
 
-        private void Button_DragEnter(object sender, DragEventArgs e)
-        {
-            MessageBox.Show("asd");
-        }
+
     }
 }

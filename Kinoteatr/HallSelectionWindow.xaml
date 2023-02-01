@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kinoteatr"
         mc:Ignorable="d"
-        Title="HallSelectionWindow" Height="745" Width="705" WindowStartupLocation="CenterScreen" Background="#FF211E67" Foreground="White" FontFamily="Comic Sans MS" Closed="Window_Closed">
+        Title="Зал" Height="760" Width="705" WindowStartupLocation="CenterScreen" Background="#FF211E67" Foreground="White" FontFamily="Comic Sans MS" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
