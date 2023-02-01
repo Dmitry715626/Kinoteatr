@@ -23,6 +23,6 @@
             <TextBlock Text="Ваши билеты" FontSize="36" Margin="10,0,0,0" VerticalAlignment="Center"/>
         </Border>
 
-        <ListBox x:Name="ListTicket" Grid.Row="2" Grid.Column="1" Style="{DynamicResource ListTicket}" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalAlignment="Center"/>
+        <ListBox x:Name="ListTicket" Grid.Row="2" VirtualizingPanel.ScrollUnit="Pixel" Grid.Column="1" Style="{DynamicResource ListTicket}" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

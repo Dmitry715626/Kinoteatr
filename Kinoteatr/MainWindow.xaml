@@ -45,7 +45,7 @@
         </StackPanel>
 
         <StackPanel x:Name="BgList" Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Background="#FF1F44A9" Margin="0,0,5,0">
-            <ListBox x:Name="ListFilms" ItemsSource="{Binding kinoItems}" Width="{Binding ElementName=BgList, Path=ActualWidth, Mode=Default}" Background="#FF1F44A9" Style="{DynamicResource StyleFilmsList}"/>
+            <ListBox x:Name="ListFilms" ItemsSource="{Binding kinoItems}" VirtualizingPanel.ScrollUnit="Pixel" Width="{Binding ElementName=BgList, Path=ActualWidth, Mode=Default}" Background="#FF1F44A9" Style="{DynamicResource StyleFilmsList}"/>
         </StackPanel>
     </Grid>
 </Window>
